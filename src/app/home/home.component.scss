@@ -1,0 +1,18 @@
+agm-map {
+    height: 500px;
+  }
+.outer{
+  display: flex;
+  flex-direction: row;
+}
+.flex-item-left {
+  background-color: #f1f1f1;
+  padding: 10px;
+  flex: 50%;
+}
+
+.flex-item-right {
+  background-color: lightblue;
+  padding: 10px;
+  flex: 50%;
+}

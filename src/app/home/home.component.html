@@ -1,0 +1,88 @@
+<p>home works!</p>
+<!--map click create new markers,circle-->
+<agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
+    <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng">
+        <agm-info-window>
+            <strong>
+                <div *ngIf="m.country!=''">
+                    {{m.country}}
+                </div>
+                <div *ngIf="m.country==''">
+                    "lat": {{m.lat}} "lng": {{m.lng}}
+                </div>
+            </strong>
+        </agm-info-window>
+    </agm-marker>
+    <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="8000" [fillColor]="'purple'" [circleDraggable]="true"
+        [editable]="true">
+    </agm-circle>
+    <agm-circle [latitude]="lat + 0.8" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true"
+        [editable]="true">
+    </agm-circle>
+</agm-map>
+<br><br><br>
+<div class="outer">
+    <div>
+        <form [formGroup]="addressForm">
+            <label for="street">Street: </label>
+            <input id="street" type="text" formControlName="Street"><br><br>
+
+            <label for="city">City: </label>
+            <input id="city" type="text" formControlName="City"><br><br>
+
+            <label for="state">State: </label>
+            <input id="state" type="text" formControlName="State"><br><br>
+
+            <label for="country">Country: </label>
+            <input id="country" type="text" formControlName="Country"><br><br>
+
+            <button type="button" (click)="getlatlng(addressForm)">Find Latitude & Longitude</button>
+        </form>
+    </div>
+    <div *ngIf="resLat" class="flex-item-left">
+        <h1>Geocoding</h1>
+        {{resLat}} <br>
+        {{resLng}}
+    </div>
+    <div *ngIf="resAdd1" class="flex-item-right">
+        <h1>Reverse Geocoding</h1>
+        {{resAdd1}}
+        {{resAdd2}}
+    </div>
+</div>
+<!--polyline-->
+<!-- <agm-map [latitude]="lat" [longitude]="lng" [fitBounds]="true" >
+    <agm-marker *ngFor="let coordinate of start_end_mark; let i=index" [latitude]="coordinate.lat"
+        [longitude]="coordinate.lng" [agmFitBounds]="true">
+        <agm-info-window>
+            <strong>
+                <div *ngIf="coordinate.country!=''">
+                    {{coordinate.country}}
+                </div>
+                <div *ngIf="coordinate.country==''">
+                    "lat": {{coordinate.lat}} "lng": {{coordinate.lng}}
+                </div>
+            </strong>
+        </agm-info-window></agm-marker>
+    <agm-polyline [visible]="true" [strokeWeight]="3" [strokeColor]="'#eeee'">
+        <agm-polyline-point *ngFor="let coordinate of markers; let i=index" [latitude]="coordinate.lat"
+            [longitude]="coordinate.lng">
+        </agm-polyline-point>
+    </agm-polyline>
+</agm-map> -->
+<!-- <div *ngFor="let coordinate of markers; let i=index">
+    {{coordinate.lat}} index: {{i}} 
+</div>
+<br>
+<hr><br>
+<div *ngFor="let coordinate of markers; let i=index">
+    {{coordinate.lng}} index: {{i}}
+</div> -->
+
+<!--Polygon-->
+<!-- <div>
+	<agm-map [latitude]="lat" [longitude]="lng"  (mapReady)="mapReady($event)" [mapTypeControl]="true">
+	    <agm-polygon [strokeColor]="'lightblue'" [strokeWeight]="4" [paths]="polygonPts">
+    </agm-polygon> 
+	</agm-map>
+</div> -->
